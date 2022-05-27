@@ -25,15 +25,15 @@ export const SidebarData = [
   },
   {
     icon: UilClipboardAlt,
-    heading: "Orders",
+    heading: "Projects",
   },
   {
     icon: UilUsersAlt,
-    heading: "Customers",
+    heading: "Experts",
   },
   {
     icon: UilPackage,
-    heading: 'Products'
+    heading: 'Assets'
   },
   {
     icon: UilChart,

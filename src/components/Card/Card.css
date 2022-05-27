@@ -62,7 +62,7 @@
 .ExpandedCard {
   position: absolute;
   width: 60%;
-  height: 70vh;
+  height: 37vh; /* Orignally 70 */
   z-index: 9;
   left: 13rem;
   border-radius: 1rem;
