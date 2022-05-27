@@ -21,7 +21,7 @@
     #cfe5ff 52.55%,
     #f3c6f1 90.85%
   );
-  height: 57.142857142857vh; /* 4/7 because zoom at 175% so 100/175 */
+  height: 100vh; /* 4/7 because zoom at 175% so 100/175 (originally 100)*/
   display: flex;
   align-items: center;
   justify-content: center;
