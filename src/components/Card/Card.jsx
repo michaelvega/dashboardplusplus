@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import "./Card.css";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { motion, AnimateSharedLayout } from "framer-motion";
-import { UilTimes } from "@iconscout/react-unicons";
-import Chart from "react-apexcharts";
+import {AnimateSharedLayout, motion} from "framer-motion";
+import {UilTimes} from "@iconscout/react-unicons";
+import axios from "axios";
+
 
 // parent Card
+const dataC = [];
+
+function copyToClipboard(text) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
 
 const Card = (props) => {
   const [expanded, setExpanded] = useState(false);
@@ -23,6 +28,7 @@ const Card = (props) => {
 
 // Compact Card
 function CompactCard({ param, setExpanded }) {
+  //const Url = param.url;
   const Png = param.png;
   return (
     <motion.div
@@ -32,19 +38,17 @@ function CompactCard({ param, setExpanded }) {
         boxShadow: param.color.boxShadow,
       }}
       layoutId="expandableCard"
-      onClick={setExpanded}
+      onClick={() => { setExpanded();}} //code for multiple functions
     >
       <div className="radialBar">
-        <CircularProgressbar
-          value={param.barValue}
-          text={`${param.barValue}%`}
-        />
-        <span>{param.title}</span>
+        <Png style={{
+          height: 48,
+          width: 48,
+        }} />
       </div>
       <div className="detail">
-        <Png />
-        <span>${param.value}</span>
-        <span>Last 24 hours</span>
+        <span>{param.title}</span>
+        <span>{param.value}</span>
       </div>
     </motion.div>
   );
@@ -52,56 +56,52 @@ function CompactCard({ param, setExpanded }) {
 
 // Expanded Card
 function ExpandedCard({ param, setExpanded }) {
-  const data = {
-    options: {
-      chart: {
-        type: "area",
-        height: "auto",
-      },
 
-      dropShadow: {
-        enabled: false,
-        enabledOnSeries: undefined,
-        top: 0,
-        left: 0,
-        blur: 3,
-        color: "#000",
-        opacity: 0.35,
-      },
+  //const {register, handleSubmit} = useForm();
+  //const Url = param.url;
 
-      fill: {
-        colors: ["#fff"],
-        type: "gradient",
+  const [inputText, setInputText] = useState('');
+  const [outputText, setOutputText] = useState('Output');
+  console.log(param.url)
+
+  async function handleSubmit (event) {
+    event.preventDefault();
+    setInputText('');
+    setOutputText("Uploading...")
+    console.log(inputText);
+    //setApiText(await getAPI(Url, inputText));
+    //setOutputText('fe');
+
+    let config = {
+      method: 'post',
+      url: param.url,
+      headers: {
+        'Content-Type': 'text/plain'
       },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "smooth",
-        colors: ["white"],
-      },
-      tooltip: {
-        x: {
-          format: "dd/MM/yy HH:mm",
-        },
-      },
-      grid: {
-        show: true,
-      },
-      xaxis: {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z",
-        ],
-      },
-    },
-  };
+      data: inputText
+    };
+
+    const response = await axios(config)
+        .then(function (response) {
+          dataC.unshift(JSON.stringify(response.data));
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    //const responseData = await JSON.stringify(response.data)
+
+    //dataC.unshift(String(responseData));
+    setOutputText(String(dataC[0]));
+
+    if (typeof dataC[0] === "undefined") {
+      setOutputText("Error - Please try again");
+    }
+    else {
+      setOutputText(String(dataC[0]));
+      copyToClipboard(String(dataC[0]));
+    }
+  }
 
   return (
     <motion.div
@@ -113,13 +113,27 @@ function ExpandedCard({ param, setExpanded }) {
       layoutId="expandableCard"
     >
       <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
-        <UilTimes onClick={setExpanded} />
+        <UilTimes onClick={() => { setExpanded(); dataC.length = 0}} />
       </div>
         <span>{param.title}</span>
-      <div className="chartContainer">
-        <Chart options={data.options} series={param.series} type="area" />
-      </div>
-      <span>Last 24 hours</span>
+      <form className="apiForm"  name="form1" id="form1" onSubmit={handleSubmit}>
+        <input
+            type="text"
+            placeholder="Input Data Here"
+            className= "apiInput"
+            value={inputText}
+            onChange={event => setInputText(event.target.value)}
+        />
+        <input
+            type="text"
+            className="apiPlaceHolder"
+            value={outputText}
+            onChange={event => setOutputText(event.target.value)}
+            readOnly
+        />
+        <input type="submit" className="apiSubmit"/>
+      </form>
+
     </motion.div>
   );
 }

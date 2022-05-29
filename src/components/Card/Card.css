@@ -41,6 +41,10 @@
   font-weight: bold;
 }
 
+.radialBar:nth-child(1) {
+  filter: drop-shadow(2px 4px 6px white);
+}
+
 /* sideDetail*/
 .detail {
   flex: 1;
@@ -50,27 +54,29 @@
   justify-content: space-between;
 }
 
-.detail > span:nth-child(2) {
-  font-size: 22px;
+.detail > span:nth-child(1) {
+  font-size: 26px;
   font-weight: bold;
 }
-.detail > span:nth-child(3) {
-  font-size: 12px;
+.detail > span:nth-child(2) {
+  font-size: 18px;
+  text-align: right;
 }
 
 /* ExpandedCard */
 .ExpandedCard {
   position: absolute;
   width: 60%;
-  height: 57.1429vh; /* Orignally 70 */
+  height: 30vh; /* Orignally 70 */
   z-index: 9;
   left: 13rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 1rem;
+
 }
 .ExpandedCard > span:nth-of-type(1) {
   color: white;
@@ -85,6 +91,45 @@
 
 .chartContainer {
   width: 70%;
+}
+
+.apiForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.apiInput {
+  border-radius: 0.7rem;
+  padding: 1.2vh;
+  font-family: 'Inter', sans-serif;
+  border-style: groove;
+  width: 55vw;
+  text-align: center;
+}
+
+.apiPlaceHolder {
+  border-radius: 0.7rem;
+  padding: 1.2vh;
+  background-color: #bebebe;
+  font-family: 'Inter', sans-serif;
+  overflow-y:scroll;
+  border-style: groove;
+  width: 55vw;
+  text-align: center;
+}
+
+.apiSubmit {
+  border-radius: 0.7rem;
+  padding: 1.2vh;
+  background-color: white;
+  border-color: rgb(178, 178, 178);
+  cursor: pointer;
+  box-shadow: 0px 0px 15px white;
+  font-family: 'Inter', sans-serif;
+  border-style: none;
 }
 
 @media screen and (max-width: 1200px) {

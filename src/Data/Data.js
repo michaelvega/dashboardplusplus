@@ -16,6 +16,8 @@ import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import img1 from "../imgs/img1.png";
 import img2 from "../imgs/img2.png";
 import img3 from "../imgs/img3.png";
+import { UilQrcodeScan, UilExchangeAlt } from "@iconscout/react-unicons";
+
 
 // Sidebar Data
 export const SidebarData = [
@@ -44,14 +46,15 @@ export const SidebarData = [
 // Analytics Cards Data
 export const cardsData = [
   {
-    title: "Sales",
+    title: "TagIT",
     color: {
-      backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
-      boxShadow: "0px 10px 20px 0px #e0c6f5",
+      backGround: "#71DEFF", //originally c484f3
+      boxShadow: "0px 10px 20px 0px #b5eeff",
     },
     barValue: 70,
-    value: "25,970",
-    png: UilUsdSquare,
+    value: "Turns asset tags into text",
+    png: UilQrcodeScan,
+    url: "https://edge-api-orp3bl6lta-ue.a.run.app/API/imageName",
     series: [
       {
         name: "Sales",
@@ -60,14 +63,15 @@ export const cardsData = [
     ],
   },
   {
-    title: "Revenue",
+    title: "OPML2JSON",
     color: {
-      backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
-      boxShadow: "0px 10px 20px 0px #FDC0C7",
+      backGround: "#347cff", // originally FC929D
+      boxShadow: "0px 10px 20px 0px #96bbff",
     },
     barValue: 80,
-    value: "14,270",
-    png: UilMoneyWithdrawal,
+    value: "Converts OPML strings to JSON",
+    png: UilExchangeAlt,
+    url: "https://opml2json-orp3bl6lta-ue.a.run.app/API/opml2json/",
     series: [
       {
         name: "Revenue",
@@ -76,15 +80,15 @@ export const cardsData = [
     ],
   },
   {
-    title: "Expenses",
+    title: "XML2JSON",
     color: {
-      backGround:
-        "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",
-      boxShadow: "0px 10px 20px 0px #F9D59B",
+      backGround: "#c484f3",
+      boxShadow: "0px 10px 20px 0px #e0c6f5",
     },
     barValue: 60,
-    value: "4,270",
+    value: "Converts XML strings to JSON",
     png: UilClipboardAlt,
+    url: "https://us-central1-fir-functions-api-a924d.cloudfunctions.net/app/",
     series: [
       {
         name: "Expenses",
