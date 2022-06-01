@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "react-apexcharts";
+import "./CustomerReview.css"
 
 
 const CustomerReview = () => {
@@ -14,6 +15,7 @@ const CustomerReview = () => {
       chart: {
         type: "area",
         height: "auto",
+        width: "auto",
       },
 
       fill: {

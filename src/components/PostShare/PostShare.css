@@ -1,0 +1,117 @@
+
+
+.PostShare{
+    display: flex;
+    gap: 1rem;
+    background-color: var(--cardColor);
+    padding: 1rem;
+    border-radius: 1rem;
+    min-height: 30vh;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.PostShare>img{
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.PostShare>div{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 1rem;
+}
+
+.PostShare>div>input{
+    background-color: var(--inputColor);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
+.pfp {
+    font-size: 16px;
+}
+
+.postOptions{
+    display: flex;
+    justify-content: space-around;
+}
+
+.option{
+
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 12px;
+}
+
+.option:hover{
+    cursor: pointer;
+}
+
+.ps-button{
+    padding: 5px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 12px;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    border-style: none;
+    background-color: #347cff;
+    color: white;
+    text-shadow: 0px 0px 15px white;
+    box-shadow: 0px 0px 10px 0px #96bbff;
+}
+
+
+.previewImage{
+    position: relative;
+}
+
+.previewImage>svg{
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+}
+
+.previewImage>img{
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .PostShare {
+        width: 170%;
+    }
+    .PostShareWrapper {
+        margin-top: 4rem;
+        margin-bottom: 1rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .PostShare{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 82vw;
+        min-height: 15vh;
+    }
+    .PostShareWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2.5rem;
+    }
+}

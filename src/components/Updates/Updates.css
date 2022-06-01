@@ -18,3 +18,9 @@
     height: 32vh;
 }
 
+
+@media screen and (max-width: 768px) {
+    .update {
+        justify-content: flex-start;
+    }
+}
