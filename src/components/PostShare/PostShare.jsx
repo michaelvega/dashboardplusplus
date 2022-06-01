@@ -6,10 +6,27 @@ import { UilPlayCircle } from "@iconscout/react-unicons";
 import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilSchedule } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
+import { v4 as uuidv4 } from 'uuid';
+import {storage} from '../../Firebase';
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+  console.log("Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude);
+}
+
 
 
 const PostShare = () => {
   const [image, setImage] = useState(null);
+  const [imagefb, setImagefb] = useState(null);
+  const [url, setUrl] = useState("");
   const imageRef = useRef();
 
   const onImageChange = (event) => {
@@ -18,8 +35,35 @@ const PostShare = () => {
       setImage({
         image: URL.createObjectURL(img),
       });
+      setImagefb(event.target.files[0])
+
     }
   };
+  
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${uuidv4()}`).put(imagefb);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(uuidv4())
+          .getDownloadURL()
+          .then(url => {
+            
+            console.log(url);
+            setUrl(url)
+          });
+      }
+    );
+    setImage(null); 
+  };
+
+  console.log(imagefb);
   return (
       <div className="PostShareWrapper">
         <h3 className="PostShareHeader">Upload Files</h3>
@@ -38,7 +82,7 @@ const PostShare = () => {
             <UilPlayCircle />
             Video
           </div>{" "}
-          <div className="option locationoption" style={{ color: "var(--location)" }}>
+          <div className="option locationoption" style={{ color: "var(--location)" }} onClick={getLocation}>
             <UilLocationPoint />
             Location
           </div>{" "}
@@ -46,7 +90,7 @@ const PostShare = () => {
             <UilSchedule />
             Shedule
           </div>
-          <button className="button ps-button">Upload</button>
+          <button onClick={handleUpload} className="button ps-button">Upload</button>
           <div style={{ display: "none" }}>
             <input
               type="file"
