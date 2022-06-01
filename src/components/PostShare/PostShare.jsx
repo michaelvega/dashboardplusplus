@@ -28,21 +28,21 @@ const PostShare = () => {
       <div>
         <input type="text" placeholder="Text or..." />
         <div className="postOptions">
-          <div className="option" style={{ color: "var(--photo)"  }}
+          <div className="option photooption" style={{ color: "var(--photo)"  }}
           onClick={()=>imageRef.current.click()}
           >
             <UilScenery />
             Photo
           </div>
-          <div className="option" style={{ color: "var(--video)" }}>
+          <div className= "option videooption" style={{ color: "var(--video)" }}>
             <UilPlayCircle />
             Video
           </div>{" "}
-          <div className="option" style={{ color: "var(--location)" }}>
+          <div className="option locationoption" style={{ color: "var(--location)" }}>
             <UilLocationPoint />
             Location
           </div>{" "}
-          <div className="option" style={{ color: "var(--shedule)" }}>
+          <div className="option scheduleoption" style={{ color: "var(--schedule)" }}>
             <UilSchedule />
             Shedule
           </div>
