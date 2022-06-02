@@ -1,3 +1,3 @@
 # Dashboard Plus Plus
 
-### [Now Live!](michaelvega.github.io/dashboardplusplus)
+### [Now Live!](https://michaelvega.github.io/dashboardplusplus/)
