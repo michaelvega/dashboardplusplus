@@ -41,7 +41,8 @@ const PostShare = () => {
   };
   
   const handleUpload = () => {
-    const uploadTask = storage.ref(`images/${uuidv4()}`).put(imagefb);
+    const name = uuidv4();
+    const uploadTask = storage.ref(`images/${name}`).put(imagefb);
     uploadTask.on(
       "state_changed",
       snapshot => {},
@@ -51,7 +52,7 @@ const PostShare = () => {
       () => {
         storage
           .ref("images")
-          .child(uuidv4())
+          .child(name)
           .getDownloadURL()
           .then(url => {
             
