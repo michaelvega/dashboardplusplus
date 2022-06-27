@@ -54,7 +54,7 @@ export const cardsData = [
     barValue: 70,
     value: "Turns asset tags into text",
     png: UilQrcodeScan,
-    url: "https://edge-api-orp3bl6lta-ue.a.run.app/API/imageName",
+    url: "https://edge-api-orp3bl6lta-ue.a.run.app/API/imageHandle",
     series: [
       {
         name: "Sales",

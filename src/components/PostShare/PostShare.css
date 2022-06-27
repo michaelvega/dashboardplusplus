@@ -120,6 +120,7 @@
         flex-direction:column;
     }
     .ps-button{
+        cursor: pointer;
         margin: 1rem auto;
         font-size:14px;
         padding:10px;
